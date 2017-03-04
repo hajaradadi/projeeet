@@ -100,12 +100,7 @@
                                         </f:facet>
                                         <h:outputText value="#{item.qteLivrer}"/>
                                     </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Id"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.id}"/>
-                                    </p:column>
+
                                 </p:dataTable>
                                 <p:commandButton action="#{commandeItemController.validate()}" value="valider" style="left: 0"></p:commandButton>
                             </h:form>
