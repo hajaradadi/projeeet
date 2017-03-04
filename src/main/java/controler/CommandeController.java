@@ -27,16 +27,27 @@ public class CommandeController implements Serializable {
     private service.CommandeFacade ejbFacade;
     private List<Commande> items = null;
     private Commande selected;
+    private Commande commande;
 
     public CommandeController() {
+        selected = new Commande();
     }
 
     public Commande getSelected() {
+        if(selected==null)
+        selected= new Commande();
         return selected;
     }
 
     public void setSelected(Commande selected) {
         this.selected = selected;
+    }
+
+    public void addCommande() {
+////        commande=new Commande(selected);
+//        ejbFacade=new CommandeFacade();
+//      ejbFacade.create(selected);
+       ejbFacade.create(selected);
     }
 
     protected void setEmbeddableKeys() {

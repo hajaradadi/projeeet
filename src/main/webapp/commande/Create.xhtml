@@ -16,7 +16,7 @@
                         <p:calendar id="datecommande" pattern="MM/dd/yyyy" value="#{commandeController.selected.datecommande}" title="#{bundle.EditCommandeTitle_datecommande}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateCommandeLabel_magasin}" for="magasin" />
                         <p:selectOneMenu id="magasin" value="#{commandeController.selected.magasin}" >
-                            <f:selectItems value="#{magasinController.itemsAvailableSelectOne}"
+                            <f:selectItems value="#{magasinController.items}"
                                            var="magasinItem"
                                            itemValue="#{magasinItem}"/>
                         </p:selectOneMenu>

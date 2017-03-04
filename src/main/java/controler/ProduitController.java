@@ -35,6 +35,7 @@ public class ProduitController implements Serializable {
     private int qtemax;
 
     public ProduitController() {
+        selected=new Produit();
     }
 
     public ProduitFacade getEjbFacade() {

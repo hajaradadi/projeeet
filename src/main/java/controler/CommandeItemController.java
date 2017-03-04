@@ -6,6 +6,7 @@ import controler.util.JsfUtil.PersistAction;
 import service.CommandeItemFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -18,6 +19,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import service.CommandeFacade;
 
 @Named("commandeItemController")
 @SessionScoped
@@ -25,16 +27,55 @@ public class CommandeItemController implements Serializable {
 
     @EJB
     private service.CommandeItemFacade ejbFacade;
+    @EJB
+    private service.CommandeFacade cmdFacade;
     private List<CommandeItem> items = null;
+    private List<CommandeItem> list = null;
     private CommandeItem selected;
+    private long idCmd;
+
+    public List<CommandeItem> getList() {
+        if(list==null)
+                list=new ArrayList<CommandeItem>();
+        return list;
+    }
+    public void validate(){
+        if(list!=null){
+            for (CommandeItem item : getList()) {
+                System.out.println(item);
+                ejbFacade.create(item);
+            }
+        }
+    }
+    public void addToList(){
+        selected.setCommande(cmdFacade.find(idCmd));
+        list.add(selected);
+        selected=null;
+    }
+    public void setList(List<CommandeItem> list) {
+        this.list = list;
+    }
+
+    public long getIdCmd() {
+        return idCmd;
+    }
+
+    public void setIdCmd(long idCmd) {
+        this.idCmd = idCmd;
+    }
 
     public CommandeItemController() {
+        selected=new CommandeItem();
+        cmdFacade=new CommandeFacade();
     }
 
     public CommandeItem getSelected() {
+        if(selected==null)
+        selected= new CommandeItem();
         return selected;
     }
 
+    
     public void setSelected(CommandeItem selected) {
         this.selected = selected;
     }

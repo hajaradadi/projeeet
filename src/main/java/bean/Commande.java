@@ -39,6 +39,13 @@ public class Commande implements Serializable {
     private Fournisseur fournisseur;
     @OneToMany(mappedBy = "commande")
     private List<CommandeItem> commandeItems;
+
+    public Commande(Commande commande) {
+        this.id = commande.id;
+        this.datecommande = commande.datecommande;
+        this.magasin = commande.magasin;
+        this.fournisseur = commande.fournisseur;
+    }
    
 
     public Commande() {
@@ -65,6 +72,8 @@ public class Commande implements Serializable {
     }
 
     public Magasin getMagasin() {
+        if(magasin==null)
+            magasin=new Magasin();
         return magasin;
     }
 
@@ -113,7 +122,9 @@ public class Commande implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Commande[ id=" + id + " ]";
+        return "id=" + id ;
     }
+
+    
     
 }
