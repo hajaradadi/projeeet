@@ -42,13 +42,14 @@ public class CommandeItemController implements Serializable {
     public void validate(){
         if(list!=null){
             for (CommandeItem item : getList()) {
-                System.out.println(item);
+               // System.out.println(item);
                 ejbFacade.create(item);
             }
         }
     }
     public void addToList(){
-        selected.setCommande(cmdFacade.find(idCmd));
+//        selected.setCommande(cmdFacade.find(idCmd));
+   //    System.out.println(idCmd);
         list.add(selected);
         selected=null;
     }
