@@ -1,5 +1,6 @@
 package controler;
 
+import bean.Commande;
 import bean.CommandeItem;
 import controler.util.JsfUtil;
 import controler.util.JsfUtil.PersistAction;
@@ -35,24 +36,28 @@ public class CommandeItemController implements Serializable {
     private long idCmd;
 
     public List<CommandeItem> getList() {
-        if(list==null)
-                list=new ArrayList<CommandeItem>();
+        if (list == null) {
+            list = new ArrayList<CommandeItem>();
+        }
         return list;
     }
-    public void validate(){
-        if(list!=null){
+
+    public void validate() {
+        if (list != null) {
             for (CommandeItem item : getList()) {
-               // System.out.println(item);
+
                 ejbFacade.create(item);
             }
         }
     }
-    public void addToList(){
+
+    public void addToList() {
 //        selected.setCommande(cmdFacade.find(idCmd));
-   //    System.out.println(idCmd);
+        //    System.out.println(idCmd);
         list.add(selected);
-        selected=null;
+        selected = null;
     }
+
     public void setList(List<CommandeItem> list) {
         this.list = list;
     }
@@ -66,17 +71,17 @@ public class CommandeItemController implements Serializable {
     }
 
     public CommandeItemController() {
-        selected=new CommandeItem();
-        cmdFacade=new CommandeFacade();
+        selected = new CommandeItem();
+        cmdFacade = new CommandeFacade();
     }
 
     public CommandeItem getSelected() {
-        if(selected==null)
-        selected= new CommandeItem();
+        if (selected == null) {
+            selected = new CommandeItem();
+        }
         return selected;
     }
 
-    
     public void setSelected(CommandeItem selected) {
         this.selected = selected;
     }
